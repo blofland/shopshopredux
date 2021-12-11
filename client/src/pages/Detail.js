@@ -18,7 +18,6 @@ import { idbPromise } from "../utils/helpers";
 import spinner from '../assets/spinner.gif'
 
 function Detail() {
-  // const [state, dispatch] = useStoreContext();
   const dispatch = useDispatch()
   const products = useSelector(s => s.entities.products)
   const cart = useSelector(s => s.ui.cart)
@@ -28,19 +27,12 @@ function Detail() {
 
   const { loading, data } = useQuery(QUERY_PRODUCTS);
 
-  // const { products, cart } = state;
 
   useEffect(() => {
-    // already in global store
     if (products.length) {
       setCurrentProduct(products.find(product => product._id === id));
     } 
-    // retrieved from server
     else if (data) {
-      // dispatch({
-      //   type: UPDATE_PRODUCTS,
-      //   products: data.products
-      // });
       dispatch(UPDATE_PRODUCTS(data.products))
 
       data.products.forEach((product) => {
@@ -50,10 +42,6 @@ function Detail() {
     // get cache from idb
     else if (!loading) {
       idbPromise('products', 'get').then((indexedProducts) => {
-        // dispatch({
-        //   type: UPDATE_PRODUCTS,
-        //   products: indexedProducts
-        // });
         dispatch(UPDATE_PRODUCTS(indexedProducts))
       });
     }
@@ -62,11 +50,6 @@ function Detail() {
   const addToCart = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === id)
     if (itemInCart) {
-      // dispatch({
-      //   type: UPDATE_CART_QUANTITY,
-      //   _id: id,
-      //   purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
-      // });
       dispatch(UPDATE_CART_QUANTITY({
         _id: id,
         purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
@@ -77,10 +60,6 @@ function Detail() {
         purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
       });
     } else {
-      // dispatch({
-      //   type: ADD_TO_CART,
-      //   product: { ...currentProduct, purchaseQuantity: 1 }
-      // });
       dispatch(ADD_TO_CART)
       idbPromise('cart', 'put', { ...currentProduct, purchaseQuantity: 1 });
 
@@ -88,10 +67,6 @@ function Detail() {
   }
 
   const removeFromCart = () => {
-    // dispatch({
-    //   type: REMOVE_FROM_CART,
-    //   _id: currentProduct._id
-    // });
     dispatch(REMOVE_FROM_CART({
       _id: currentProduct._id
     }))
