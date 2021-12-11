@@ -19,13 +19,14 @@ const slice = createSlice({
                 if (action.payload._id === product._id) {
                     product.purchaseQuantity = action.payload.purchaseQuantity
                 }
+                // if(action.payload = product._id)
                 return product
                 }
             )
         },
         REMOVE_FROM_CART: (state, action) => {
             state.cart = state.cart.filter(product => {
-                return product._id !== action._id;
+                return product._id !== action.payload._id;
             });
             state.cartOpen = state.cart.length > 0 
         },
