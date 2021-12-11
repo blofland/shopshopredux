@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 //   ADD_TO_CART,
 //   UPDATE_PRODUCTS,
 // } from "../utils/actions";
-import { REMOVE_FROM_CART, UPDATE_PRODUCTS, ADD_TO_CART, UPDATE_CART_QUANTITY } from "../store/ui/ui";
+import { REMOVE_FROM_CART, ADD_TO_CART, UPDATE_CART_QUANTITY } from "../store/ui/ui";
 import { UPDATE_PRODUCTS } from "../store/entities/product";
 import { QUERY_PRODUCTS } from "../utils/queries";
 import { idbPromise } from "../utils/helpers";
