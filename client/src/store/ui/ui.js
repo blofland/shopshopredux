@@ -38,7 +38,7 @@ const slice = createSlice({
         }
     }
 })
-export const {UPDATE_PRODUCTS} = slice.actions
+export const {ADD_TO_CART, ADD_MULTIPLE_TO_CART, UPDATE_CART_QUANTITY, REMOVE_FROM_CART, CLEAR_CART, TOGGLE_CART} = slice.actions
 export default slice.reducer
 
 

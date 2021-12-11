@@ -14,5 +14,5 @@ const slice = createSlice({
         }
     }
 })
-export const {UPDATE_PRODUCTS} = slice.actions
+export const {UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY} = slice.actions
 export default slice.reducer
